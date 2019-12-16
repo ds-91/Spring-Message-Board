@@ -9,17 +9,21 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-  <title>new post</title>
+  <title>New Post</title>
 </head>
 <body>
   <div class="container">
     <h3>New Post</h3>
     <hr>
+    <form th:action="@{'/home'}" method="get">
+      <button type="submit" class="btn btn-primary">Home</button>
+    </form>
+    <hr>
     <div class="row">
       <div class="col">
-        left side
+        <!-- left side -->
       </div>
-      <div class="col-5">
+      <div class="col-6">
         <form th:action="@{'/post/new'}" th:object="${post}" method="post">
           <div class="form-group">
             <label for="newPostTitle">Title</label>
@@ -36,7 +40,7 @@
         </form>
       </div>
       <div class="col">
-        right side
+        <!-- right side -->
       </div>
     </div>
   </div>

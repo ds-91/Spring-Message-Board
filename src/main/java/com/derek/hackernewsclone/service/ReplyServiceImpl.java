@@ -4,6 +4,7 @@ import com.derek.hackernewsclone.dao.ReplyRepository;
 import com.derek.hackernewsclone.entity.Reply;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +19,7 @@ public class ReplyServiceImpl implements ReplyService {
 
   @Override
   public List<Reply> findAllByPostId(int id) {
-    return null;
+    return replyRepository.findAllByPostId(id);
   }
 
   @Override

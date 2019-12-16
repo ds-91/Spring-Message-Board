@@ -1,7 +1,9 @@
 package com.derek.hackernewsclone.controller;
 
 import com.derek.hackernewsclone.entity.Post;
+import com.derek.hackernewsclone.entity.Reply;
 import com.derek.hackernewsclone.service.PostService;
+import com.derek.hackernewsclone.service.ReplyService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +19,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PostController {
 
   private PostService postService;
+  private ReplyService replyService;
 
   @Autowired
-  private PostController(PostService postService) {
+  private PostController(PostService postService, ReplyService replyService) {
     this.postService = postService;
+    this.replyService = replyService;
   }
 
   @GetMapping("/home")
@@ -50,6 +54,10 @@ public class PostController {
   @GetMapping("/post/{id}")
   public String showPostByIdPage(@PathVariable(value="id") int id, Model theModel) {
     Post p = postService.findById(id);
+    List<Reply> replyList = replyService.findAllByPostId(id);
+
+    theModel.addAttribute("replies", replyList);
+    System.out.println("REPLY LIST IS: " + replyList);
     theModel.addAttribute("posts", p);
 
     return "postview";

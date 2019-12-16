@@ -15,11 +15,15 @@
 <div class="container">
   <h3 th:text="'Reply to ' + ${post.title}"></h3>
   <hr>
+  <form th:action="@{'/home'}" method="get">
+    <button type="submit" class="btn btn-primary">Home</button>
+  </form>
+  <hr>
   <div class="row">
     <div class="col">
-      left side
+      <!-- left side -->
     </div>
-    <div class="col-5">
+    <div class="col-6">
       <form th:action="@{'/reply'}" th:object="${reply}" method="post">
         <div class="form-group">
           <label for="newReplyBody">Reply</label>
@@ -30,7 +34,7 @@
       </form>
     </div>
     <div class="col">
-      right side
+      <!-- right side -->
     </div>
   </div>
 </div>
