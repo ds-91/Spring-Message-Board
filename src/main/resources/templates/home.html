@@ -9,7 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-  <title>Employee Directory</title>
+  <title>home??</title>
 </head>
 
 <body>
@@ -18,9 +18,12 @@
 
   <h3>Home</h3>
   <hr>
+    <form th:action="@{'/post/new'}" method="get">
+      <button type="submit" class="btn btn-success">New Post</button>
+    </form>
+  <hr>
   <div class="list-group" th:each="post : ${posts}">
-    <a th:href="@{'/post/' + ${post.id}}" th:text="${post.title}" class="list-group-item">
-
+    <a th:href="@{'/post/' + ${post.id}}" th:text="${post.title}" class="list-group-item list-group-item-action">
     </a>
   </div>
 </div>
