@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <title>Employee Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h3 th:text="${posts.id}"></h3>
+  <hr>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <ul class="list-group" th:each="tempPost : ${posts}">
+      <li class="list-group-item" th:text="${tempPost.title}">
+        <span class="badge">14</span>
+      </li>
+    </ul>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+<!--
+    <tr th:each="tempPost : ${posts}">
+      <td th:text="${tempPost.title}" />
+      <td th:text="${tempPost.body}" />
+      <td><button>hello!</button></td>
+    </tr>
+
+-->
