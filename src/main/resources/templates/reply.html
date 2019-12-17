@@ -10,25 +10,20 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <title>Reply</title>
+  <div th:replace="header :: header"> </div>
 </head>
 <body>
 <div class="container">
-  <h3 th:text="'Reply to ' + ${post.title}"></h3>
-  <hr>
-  <form th:action="@{'/home'}" method="get">
-    <button type="submit" class="btn btn-primary">Home</button>
-  </form>
-  <hr>
   <div class="row">
     <div class="col">
       <!-- left side -->
     </div>
     <div class="col-6">
-      <form th:action="@{'/reply'}" th:object="${reply}" method="post">
+      <form style="margin-top: 10px;" th:action="@{'/reply'}" th:object="${reply}" method="post">
         <div class="form-group">
-          <label for="newReplyBody">Reply</label>
+          <label th:text="'Reply to ' + ${post.title}" for="newReplyBody"></label>
           <input type="hidden" name="post_id" th:value="${post.id}">
-          <textarea class="form-control" id="newReplyBody" name="body" rows="6" placeholder="Very super cool and nice reply"></textarea>
+          <textarea class="form-control" id="newReplyBody" name="body" rows="12" placeholder="Very super cool and nice reply"></textarea>
         </div>
         <button type="submit" class="btn btn-success">Reply</button>
       </form>

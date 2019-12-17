@@ -10,14 +10,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <title>New Post</title>
+  <div th:replace="header :: header"> </div>
 </head>
 <body>
   <div class="container">
-    <h3>New Post</h3>
-    <hr>
-    <form th:action="@{'/home'}" method="get">
-      <button type="submit" class="btn btn-primary">Home</button>
-    </form>
+    <h3 style="text-align:center;">New Post</h3>
     <hr>
     <div class="row">
       <div class="col">

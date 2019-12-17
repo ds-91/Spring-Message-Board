@@ -8,24 +8,13 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-  <title>home??</title>
+  <title>Home</title>
+  <div th:replace="header :: header"> </div>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <form th:action="@{'/home'}" method="get">
-          <button type="submit" class="btn btn-outline-primary" style="margin-right: 1em;">Home</button>
-        </form>
-        <form th:action="@{'/post/new'}" method="get">
-          <button type="submit" class="btn btn-outline-success">New Post</button>
-        </form>
-      </div>
-    </div>
-  </nav>
   <h3 style="text-align: center">Posts</h3>
+  <hr>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -45,16 +34,3 @@
 </div>
 </body>
 </html>
-
-<!--
-  <div class="row span6">
-    <div class="col-xs-4">
-      <form th:action="@{'/home'}" method="get">
-        <button type="submit" class="btn btn-primary">Home</button>
-      </form>
-      <form th:action="@{'/post/new'}" method="get">
-        <button type="submit" class="btn btn-success">New Post</button>
-      </form>
-    </div>
-  </div>
--->

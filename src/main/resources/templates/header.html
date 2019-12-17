@@ -1,14 +1,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <form th:action="@{'/home'}" method="get">
-        <button type="submit" class="btn btn-outline-primary" style="margin-right: 1em;">Home</button>
-      </form>
-      <form th:action="@{'/post/new'}" method="get">
-        <button type="submit" class="btn btn-outline-success">New Post</button>
-      </form>
+<div th:fragment="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <form th:action="@{'/home'}" method="get">
+          <button type="submit" class="btn btn-outline-primary" style="margin-right: 1em;">Home</button>
+        </form>
+        <form th:action="@{'/post/new'}" method="get">
+          <button type="submit" class="btn btn-outline-success">New Post</button>
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+    <form th:action="@{'#'}" method="get">
+      <button type="submit" class="btn btn-outline-secondary">Login</button>
+    </form>
+  </nav>
+</div>
