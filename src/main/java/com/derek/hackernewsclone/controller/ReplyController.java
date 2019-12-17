@@ -36,6 +36,9 @@ public class ReplyController {
   @PostMapping("/reply")
   public String createNewReply(@RequestParam("post_id") int id, @ModelAttribute Reply reply,
       BindingResult br, Model theModel) {
+    if (br.hasErrors()) {
+      return "error";
+    }
 
     Reply r = new Reply(id, reply.getBody());
     replyService.save(r);

@@ -22,10 +22,28 @@
   <ul class="list-group" th:each="post : ${posts}">
     <li class="list-group-item" th:text="${post.body}"></li>
   </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- left side -->
+      </div>
+      <div class="col-6">
+        <ul class="list-group" th:each="reply : ${replies}">
+          <li class="list-group-item" th:text="${reply.body}" style="text-align: center;"></li>
+        </ul>
+      </div>
+      <div class="col">
+        <!-- right side -->
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+<!--
 
   <ul th:each="reply : ${replies}">
     <li th:text="${reply.body}"></li>
   </ul>
-</div>
-</body>
-</html>
+-->

@@ -57,7 +57,6 @@ public class PostController {
     List<Reply> replyList = replyService.findAllByPostId(id);
 
     theModel.addAttribute("replies", replyList);
-    System.out.println("REPLY LIST IS: " + replyList);
     theModel.addAttribute("posts", p);
 
     return "postview";
