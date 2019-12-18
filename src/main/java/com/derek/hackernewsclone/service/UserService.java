@@ -14,4 +14,6 @@ public interface UserService {
 
   public boolean existsByUsername(String username);
 
+  public User getUserByUsername(String username);
+
 }
