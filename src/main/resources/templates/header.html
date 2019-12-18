@@ -7,9 +7,12 @@
         <form th:action="@{/home}" method="get">
           <button type="submit" class="btn btn-outline-primary" style="margin-right: 1em;">Home</button>
         </form>
-        <form th:action="@{/post/new}" method="get">
-          <button type="submit" class="btn btn-outline-success">New Post</button>
-        </form>
+        <div th:if="${session.loggedin}">
+          <form th:action="@{/post/new}" method="get">
+            <button type="submit" class="btn btn-outline-success">New Post</button>
+          </form>
+        </div>
+        <label style="color: gray; padding-top: 5px;" th:unless="${session.loggedin}" th:text="'Please log in to post'"></label>
       </div>
     </div>
     <div th:if="${session.loggedin}">

@@ -38,8 +38,13 @@ public class PostController {
   }
 
   @GetMapping("/post/new")
-  public String showNewPostPage() {
-    return "newpost";
+  public String showNewPostPage(Model theModel, HttpSession session) {
+    if (session.getAttribute("loggedin") == null) {
+      theModel.addAttribute("error", "You are not allowed to post without logging in!");
+      return "error";
+    } else {
+      return "newpost";
+    }
   }
 
   @PostMapping("/post/new")
