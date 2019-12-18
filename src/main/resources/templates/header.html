@@ -12,6 +12,12 @@
         </form>
       </div>
     </div>
+    <div th:if="${session.loggedin}">
+      <label style="color: gray; margin-right: 10px; padding-top: 5px;" th:text="'Logged in as ' + ${session.loggedin.username}"></label>
+    </div>
+    <div th:unless="${session.loggedin}">
+      <label style="color: gray; margin-right: 10px; padding-top: 5px;" th:text="'You are not logged in'"></label>
+    </div>
     <form th:action="@{/logout}" method="get">
       <button type="submit" class="btn btn-outline-secondary" style="margin-right: 10px;">Log out</button>
     </form>

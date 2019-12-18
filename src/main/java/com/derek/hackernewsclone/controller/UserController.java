@@ -46,7 +46,8 @@ public class UserController {
     User encryptedUser = new User(username, password);
 
     userService.save(encryptedUser);
-    session.setAttribute("username", u.getUsername());
+    session.setAttribute("loggedin", encryptedUser);
+    System.out.println("XXXXX - At registerNewUser: " + session.getAttribute("loggedin").toString());
     return "redirect:/home";
   }
 
@@ -56,7 +57,8 @@ public class UserController {
 
     if (userService.existsByUsername(u.getUsername()) &&
       encoder.matches(u.getPassword(), foundUser.getPassword())) {
-        session.setAttribute("username", u.getUsername());
+        session.setAttribute("loggedin", foundUser);
+      System.out.println("XXXXX - At userLogin: " + session.getAttribute("loggedin").toString());
         return "redirect:/home";
     } else {
       theModel.addAttribute("error", "Invalid login credentials");
@@ -66,9 +68,8 @@ public class UserController {
 
   @RequestMapping("/logout")
   public String userLogout(HttpSession session, HttpServletRequest req, Model theModel) {
-
-    if (session.getAttribute("username") != null) {
-      session.removeAttribute("username");
+    if (session.getAttribute("loggedin") != null) {
+      session.removeAttribute("loggedin");
       return "redirect:/home";
     } else {
       theModel.addAttribute("error", "You are not logged in!");

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +29,7 @@ public class PostController {
   }
 
   @GetMapping("/home")
-  public String showHomePage(Model theModel) {
+  public String showHomePage(Model theModel, HttpServletRequest req) {
     List<Post> allPosts = postService.findAll();
 
     theModel.addAttribute("posts", allPosts);
@@ -44,12 +43,8 @@ public class PostController {
   }
 
   @PostMapping("/post/new")
-  public String createNewPost(@ModelAttribute Post post, BindingResult br, Model theModel, HttpServletRequest req, HttpSession session) {
-    if (br.hasErrors()) {
-      return "error";
-    }
-
-    if (session.getAttribute("username") == null) {
+  public String createNewPost(@ModelAttribute Post post, Model theModel, HttpServletRequest req, HttpSession session) {
+    if (session.getAttribute("loggedin") == null) {
       theModel.addAttribute("error", "You are not allowed to post without logging in!");
       return "error";
     } else {
