@@ -47,7 +47,6 @@ public class UserController {
 
     userService.save(encryptedUser);
     session.setAttribute("loggedin", encryptedUser);
-    System.out.println("XXXXX - At registerNewUser: " + session.getAttribute("loggedin").toString());
     return "redirect:/home";
   }
 
@@ -58,7 +57,6 @@ public class UserController {
     if (userService.existsByUsername(u.getUsername()) &&
       encoder.matches(u.getPassword(), foundUser.getPassword())) {
         session.setAttribute("loggedin", foundUser);
-      System.out.println("XXXXX - At userLogin: " + session.getAttribute("loggedin").toString());
         return "redirect:/home";
     } else {
       theModel.addAttribute("error", "Invalid login credentials");

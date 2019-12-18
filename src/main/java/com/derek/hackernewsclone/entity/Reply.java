@@ -16,6 +16,9 @@ public class Reply {
   @Column(name="id")
   private int id;
 
+  @Column(name="user_id")
+  private int userId;
+
   @Column(name="post_id")
   private int postId;
 
@@ -24,15 +27,25 @@ public class Reply {
 
   public Reply() {}
 
-  public Reply(int id, int postId, String body) {
+  public Reply(int id, int userId, int postId, String body) {
     this.id = id;
+    this. userId = userId;
     this.postId = postId;
     this.body = body;
   }
 
-  public Reply(int postId, String body) {
+  public Reply(int postId, int userId, String body) {
     this.postId = postId;
+    this.userId = userId;
     this.body = body;
+  }
+
+  public int getUserId() {
+    return userId;
+  }
+
+  public void setUserId(int userId) {
+    this.userId = userId;
   }
 
   public int getId() {
