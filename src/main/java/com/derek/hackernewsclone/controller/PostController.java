@@ -5,6 +5,8 @@ import com.derek.hackernewsclone.entity.Reply;
 import com.derek.hackernewsclone.service.PostService;
 import com.derek.hackernewsclone.service.ReplyService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,13 +44,18 @@ public class PostController {
   }
 
   @PostMapping("/post/new")
-  public String createNewPost(@ModelAttribute Post post, BindingResult br, Model theModel) {
+  public String createNewPost(@ModelAttribute Post post, BindingResult br, Model theModel, HttpServletRequest req, HttpSession session) {
     if (br.hasErrors()) {
       return "error";
     }
 
-    postService.save(post);
-    return "redirect:/home";
+    if (session.getAttribute("username") == null) {
+      theModel.addAttribute("error", "You are not allowed to post without logging in!");
+      return "error";
+    } else {
+      postService.save(post);
+      return "redirect:/home";
+    }
   }
 
   @GetMapping("/post/{id}")

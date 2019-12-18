@@ -4,19 +4,19 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <form th:action="@{'/home'}" method="get">
+        <form th:action="@{/home}" method="get">
           <button type="submit" class="btn btn-outline-primary" style="margin-right: 1em;">Home</button>
         </form>
-        <form th:action="@{'/post/new'}" method="get">
+        <form th:action="@{/post/new}" method="get">
           <button type="submit" class="btn btn-outline-success">New Post</button>
         </form>
       </div>
     </div>
-    <form th:action="@{'#'}" method="get"> <!-- should be post to log out. also change action -->
+    <form th:action="@{/logout}" method="get">
       <button type="submit" class="btn btn-outline-secondary" style="margin-right: 10px;">Log out</button>
     </form>
 
-    <form th:action="@{'/register'}" method="get">
+    <form th:action="@{/register}" method="get">
       <button type="submit" class="btn btn-outline-secondary">Log in or Register</button>
     </form>
   </nav>

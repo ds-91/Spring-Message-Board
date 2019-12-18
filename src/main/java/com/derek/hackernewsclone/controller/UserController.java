@@ -2,11 +2,12 @@ package com.derek.hackernewsclone.controller;
 
 import com.derek.hackernewsclone.entity.User;
 import com.derek.hackernewsclone.service.UserService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,12 +31,13 @@ public class UserController {
   }
 
   @PostMapping("/register")
-  public String registerNewUser(@ModelAttribute User u, BindingResult br) {
-    if (br.hasErrors()) {
-      return "register-error";
-    }
+  public String registerNewUser(@ModelAttribute User u, Model theModel, HttpSession session) {
     if (userService.existsByUsername(u.getUsername())) {
-      return "register-error";
+      theModel.addAttribute("error", "Username already exists!");
+      return "error";
+    } else if (u.getUsername().length() < 3 || u.getUsername().length() > 12) {
+      theModel.addAttribute("error", "Username is not the right length!");
+      return "error";
     }
 
     String username = u.getUsername();
@@ -44,34 +46,32 @@ public class UserController {
     User encryptedUser = new User(username, password);
 
     userService.save(encryptedUser);
+    session.setAttribute("username", u.getUsername());
     return "redirect:/home";
   }
 
+  @PostMapping("/login")
+  public String userLogin(@ModelAttribute User u, HttpSession session, Model theModel) {
+    User foundUser = userService.getUserByUsername(u.getUsername());
 
-  @RequestMapping("/login")
-  public String userLogin(@ModelAttribute User u, BindingResult br, Model theModel) {
-    User foundUser = null;
-    String errorMsg = null;
-    if (br.hasErrors()) {
-      return "register-error";
-    }
-
-    foundUser = userService.getUserByUsername(u.getUsername());
-
-    if (foundUser != null) {
-      if (encoder.matches(u.getPassword(), foundUser.getPassword())) {
-        // log in
-        errorMsg = "Logged in!";
-        theModel.addAttribute("error", errorMsg);
+    if (userService.existsByUsername(u.getUsername()) &&
+      encoder.matches(u.getPassword(), foundUser.getPassword())) {
+        session.setAttribute("username", u.getUsername());
         return "redirect:/home";
-      } else {
-        errorMsg = "Invalid password";
-        theModel.addAttribute("error", errorMsg);
-        return "error";
-      }
     } else {
-      errorMsg = "User not found!";
-      theModel.addAttribute("error", errorMsg);
+      theModel.addAttribute("error", "Invalid login credentials");
+      return "error";
+    }
+  }
+
+  @RequestMapping("/logout")
+  public String userLogout(HttpSession session, HttpServletRequest req, Model theModel) {
+
+    if (session.getAttribute("username") != null) {
+      session.removeAttribute("username");
+      return "redirect:/home";
+    } else {
+      theModel.addAttribute("error", "You are not logged in!");
       return "error";
     }
   }
