@@ -52,7 +52,7 @@ public class UserController {
 
   @PostMapping("/login")
   public String userLogin(@ModelAttribute User u, HttpSession session, Model theModel) {
-    User foundUser = userService.getUserByUsername(u.getUsername());
+    User foundUser = userService.findUserByUsername(u.getUsername());
 
     if (userService.existsByUsername(u.getUsername()) &&
       encoder.matches(u.getPassword(), foundUser.getPassword())) {

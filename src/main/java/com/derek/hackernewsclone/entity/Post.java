@@ -71,4 +71,12 @@ public class Post {
   public void setBody(String body) {
     this.body = body;
   }
+
+  @Override
+  public String toString() {
+    return "ID: " + this.id + "\n" +
+        "userID: " + this.userId + "\n" +
+        "Title: " + this.title + "\n" +
+        "Body: " + this.body;
+  }
 }

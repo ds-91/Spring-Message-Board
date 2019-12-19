@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-  public User getUserById(int id);
+  public User findById(int id);
 
   public void save(User u);
 
@@ -14,6 +14,6 @@ public interface UserService {
 
   public boolean existsByUsername(String username);
 
-  public User getUserByUsername(String username);
+  public User findUserByUsername(String username);
 
 }

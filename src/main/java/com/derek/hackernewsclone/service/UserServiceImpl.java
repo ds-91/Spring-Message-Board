@@ -2,6 +2,7 @@ package com.derek.hackernewsclone.service;
 
 import com.derek.hackernewsclone.dao.UserRepository;
 import com.derek.hackernewsclone.entity.User;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,14 @@ public class UserServiceImpl implements UserService{
   }
 
   @Override
-  public User getUserById(int id) {
-    return null;
+  public User findById(int id) {
+    Optional<User> temp = userRepository.findById(id);
+
+    if (temp == null) {
+      throw new RuntimeException("Could not find user with that id!");
+    } else {
+      return temp.get();
+    }
   }
 
   @Override
@@ -36,7 +43,7 @@ public class UserServiceImpl implements UserService{
   }
 
   @Override
-  public User getUserByUsername(String username) {
+  public User findUserByUsername(String username) {
     return userRepository.findUserByUsername(username);
   }
 }

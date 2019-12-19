@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +41,8 @@ public class ReplyController {
   public String createNewReply(@RequestParam("post_id") int id, @ModelAttribute Reply reply,
       HttpSession session) {
 
-    String loggedInUsername = session.getAttribute("loggedin").toString();
-    User tempUser = userService.getUserByUsername(loggedInUsername);
+    User loggedInUsername = (User) session.getAttribute("loggedin");
+    User tempUser = userService.findUserByUsername(loggedInUsername.getUsername());
     int loggedinUserId = tempUser.getId();
 
     Reply r = new Reply(id, loggedinUserId, reply.getBody());
