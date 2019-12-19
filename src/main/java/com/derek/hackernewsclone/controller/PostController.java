@@ -59,7 +59,7 @@ public class PostController {
       User userLoggedIn = (User) session.getAttribute("loggedin");
       User newUser = userService.findUserByUsername(userLoggedIn.getUsername());
 
-      Post newPost = new Post(newUser.getId(), post.getTitle(), post.getBody());
+      Post newPost = new Post(newUser.getUsername(), post.getTitle(), post.getBody());
       postService.save(newPost);
       return "redirect:/home";
     }

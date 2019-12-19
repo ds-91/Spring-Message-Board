@@ -39,13 +39,17 @@ public class ReplyController {
 
   @PostMapping("/reply")
   public String createNewReply(@RequestParam("post_id") int id, @ModelAttribute Reply reply,
-      HttpSession session) {
+      HttpSession session, Model theModel) {
+
+    if (session.getAttribute("loggedin") == null) {
+      theModel.addAttribute("error", "Not authorized");
+      return "error";
+    }
 
     User loggedInUsername = (User) session.getAttribute("loggedin");
     User tempUser = userService.findUserByUsername(loggedInUsername.getUsername());
-    int loggedinUserId = tempUser.getId();
 
-    Reply r = new Reply(id, loggedinUserId, reply.getBody());
+    Reply r = new Reply(id, tempUser.getUsername(), reply.getBody());
     replyService.save(r);
 
     return "redirect:/post/" + id;

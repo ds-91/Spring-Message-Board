@@ -16,8 +16,8 @@ public class Post {
   @Column(name="id")
   private int id;
 
-  @Column(name="user_id")
-  private int userId;
+  @Column(name="user_name")
+  private String userName;
 
   @Column(name="title")
   private String title;
@@ -27,25 +27,25 @@ public class Post {
 
   public Post() {}
 
-  public Post(int id, int userId, String title, String body) {
+  public Post(int id, String userName, String title, String body) {
     this.id = id;
-    this.userId = userId;
+    this.userName = userName;
     this.title = title;
     this.body = body;
   }
 
-  public Post(int userId, String title, String body) {
-    this.userId = userId;
+  public Post(String userName, String title, String body) {
+    this.userName = userName;
     this.title = title;
     this.body = body;
   }
 
-  public int getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public int getId() {
@@ -75,7 +75,7 @@ public class Post {
   @Override
   public String toString() {
     return "ID: " + this.id + "\n" +
-        "userID: " + this.userId + "\n" +
+        "userName: " + this.userName + "\n" +
         "Title: " + this.title + "\n" +
         "Body: " + this.body;
   }
