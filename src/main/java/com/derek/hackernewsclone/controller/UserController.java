@@ -26,7 +26,11 @@ public class UserController {
   }
 
   @GetMapping("/register")
-  public String register() {
+  public String register(HttpSession session, Model theModel) {
+    if (session.getAttribute("loggedin") != null) {
+      theModel.addAttribute("error", "Already logged in!");
+      return "error";
+    }
     return "register_login";
   }
 

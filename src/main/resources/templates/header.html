@@ -25,9 +25,11 @@
       </form>
     </div>
 
-    <form th:action="@{/register}" method="get">
-      <button type="submit" class="btn btn-outline-secondary">Log in or Register</button>
-    </form>
+    <div th:unless="${session.loggedin}">
+      <form th:action="@{/register}" method="get">
+        <button type="submit" class="btn btn-outline-secondary">Log in or Register</button>
+      </form>
+    </div>
   </nav>
 </div>
 </div>
