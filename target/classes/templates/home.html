@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <title>Home</title>
+  <div th:replace="header :: header"> </div>
+</head>
+
+<body>
+  <h3 style="text-align: center">Posts</h3>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- left side -->
+      </div>
+      <div class="col-6">
+        <div class="list-group" th:each="post : ${posts}">
+          <a th:href="@{'/post/' + ${post.id}}" th:text="${post.userName} + ': ' + ${post.title}" class="list-group-item list-group-item-action" style="margin-bottom: 10px;">
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <!-- right side -->
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
