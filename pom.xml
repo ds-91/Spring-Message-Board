@@ -9,10 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.derek</groupId>
-	<artifactId>hackernewsclone</artifactId>
+	<artifactId>springboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hackernewsclone</name>
-	<description>Hacker News Clone</description>
+	<packaging>war</packaging>
+	<name>springboard</name>
+	<description>Spring Boot Message Board</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -74,6 +75,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<attachClasses>true</attachClasses>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
