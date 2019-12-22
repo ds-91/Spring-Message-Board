@@ -1,6 +1,5 @@
 HELP.md
 target/
-src/resources/application.properties
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -35,3 +34,5 @@ build/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+/src/main/resources/application.properties
+
