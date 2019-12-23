@@ -1,6 +1,8 @@
 # Spring Message Board
 
-Simple message board build using Java 8 and Spring Boot.
+Simple message board build using Java 8 and Spring Boot hosted on AWS Elastic Beanstalk.
+
+[Demo available here](http://springboard.us-east-1.elasticbeanstalk.com/)
 
 ## Getting Started
 
